@@ -1,0 +1,1 @@
+使用ssm(Spring+SpringMVC+mybatis)框架，数据库为forum，提供有权限控制，登录注册，数据库有表user存放用户信息，posts存放帖子信息，board存放板块信息，role和permission存放角色和权限信息。
