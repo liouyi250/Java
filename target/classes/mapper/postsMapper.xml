@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.dao.PostsDao">
+    <resultMap id="postsMap" type="com.smart.entity.Posts">
+        <id property="id" column="id"/>
+        <result property="boardId" column="boardId"/>
+        <result property="creater" column="creater"/>
+        <result property="subject" column="subject"/>
+        <result property="article" column="article"/>
+        <result property="createTime" column="createTime"/>
+    </resultMap>
+
+    <select id="queryPostsList" resultMap="postsMap" parameterType="int" >
+        SELECT id,boardId,creater,subject,article,createTime from posts WHERE id=#{id}
+    </select>
+
+    <insert id="addNewPosts" parameterType="com.smart.entity.Posts" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO posts(boardId,creater,subject,article,createTime) VALUES (#{boardId},#{creater},#{subject},#{article},#{createTime})
+    </insert>
+
+    <delete id="deletePosts" parameterType="int">
+        DELETE FROM posts where id=#{id}
+    </delete>
+
+    <update id="updatePosts" parameterType="com.smart.entity.Posts">
+        UPDATE posts SET boardId=#{boardId},subject=#{subject},article=#{article},createTime=#{createTime} where id=#{id}
+    </update>
+
+
+
+</mapper>

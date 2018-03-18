@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.dao.BoardDao">
+    <!--查询帖子的最后一个评论者和评论时间-->
+    <resultMap id="postsAndCommentsMap" type="java.util.HashMap">
+        <id column="id" property="postsId" jdbcType="INTEGER"/>
+        <result column="boardId" property="boardId" jdbcType="INTEGER"/>
+        <result column="creater" property="creater" jdbcType="VARCHAR"/>
+        <result column="subject" property="subject" jdbcType="VARCHAR"/>
+        <result column="createTime" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="evaluatee" property="evaluatee" jdbcType="VARCHAR"/>
+        <result column="commentTime" property="commentTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="queryPostsAndComments" resultMap="postsAndCommentsMap" parameterType="int">
+        select posts.id,boardId,creater,subject,createTime,id,evaluatee,commentTime
+        from posts
+        left join
+        (select postsId,evaluatee,commentTime
+        from comments
+        order by commentTime
+        desc limit 1)
+        as t
+        on boardId=#{boardId} and t.postsId=posts.id;
+    </select>
+</mapper>

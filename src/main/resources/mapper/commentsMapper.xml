@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.dao.CommentsDao">
+    <resultMap id="commentsMap" type="com.smart.entity.Comments">
+        <id property="id" column="id"/>
+        <result property="postsId" column="postsId"/>
+        <result property="valuator" column="valuator"/>
+        <result property="evaluatee" column="evaluatee"/>
+        <result property="commentTime" column="commentTime"/>
+        <result property="commentDetail" column="commentDetail"/>
+    </resultMap>
+
+    <select id="queryComment" resultMap="commentsMap" >
+        SELECT id,postsId,valuator,evaluatee,commentTime,commentDetail from comments WHERE id=#{id}
+    </select>
+
+    <insert id="addComment" parameterType="com.smart.entity.Comments" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO comments(postsId,valuator,evaluatee,commentTime,commentDetail) values(#{postsId},#{valuator},#{evaluatee},#{commentTime},#{commentDetail})
+
+    </insert>
+
+    <update id="updateComment" parameterType="com.smart.entity.Comments">
+        UPDATE comments SET commentTime=#{commentTime},commentDetail=#{commentDetail} WHERE  id=#{id}
+    </update>
+
+    <delete id="deleteComment" parameterType="int">
+        DELETE FROM comments where id=#{id}
+    </delete>
+</mapper>
