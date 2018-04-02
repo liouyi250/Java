@@ -2,25 +2,47 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smart.dao.BoardDao">
     <!--查询帖子的最后一个评论者和评论时间-->
-    <resultMap id="postsAndCommentsMap" type="java.util.HashMap">
+    <resultMap id="postsAndCommentsMap" type="com.smart.entity.PostsIndex">
         <id column="id" property="postsId" jdbcType="INTEGER"/>
         <result column="boardId" property="boardId" jdbcType="INTEGER"/>
         <result column="creater" property="creater" jdbcType="VARCHAR"/>
         <result column="subject" property="subject" jdbcType="VARCHAR"/>
         <result column="createTime" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="viewCount" property="viewCount" jdbcType="INTEGER"/>
+        <result column="top" property="top" jdbcType="BOOLEAN"/>
+        <result column="elite" property="elite" jdbcType="BOOLEAN"/>
         <result column="evaluatee" property="evaluatee" jdbcType="VARCHAR"/>
         <result column="commentTime" property="commentTime" jdbcType="TIMESTAMP"/>
+        <result column="comCount" property="comCount" jdbcType="INTEGER"/>
     </resultMap>
 
-    <select id="queryPostsAndComments" resultMap="postsAndCommentsMap" parameterType="int">
-        select posts.id,boardId,creater,subject,createTime,id,evaluatee,commentTime
+    <select id="queryPostsAndComments" resultMap="postsAndCommentsMap">
+        select posts.id as id,boardId,u1.username as creater,subject,createTime,viewCount,top,elite,evaluatee,commentTime,comCount
         from posts
-        left join
-        (select postsId,evaluatee,commentTime
-        from comments
-        order by commentTime
-        desc limit 1)
-        as t
-        on boardId=#{boardId} and t.postsId=posts.id;
+        left join(
+        select comments.postsId,u2.username as evaluatee,commentTime,comCount from comments
+        inner join (select count(postsId) as comCount,postsId from comments group by postsid) t1
+        on comments.postsId=t1.postsId
+        and comments.commentTime in (select max(commentTime) from comments group by postsId)
+        left join user u2
+        on u2.id=valuatorId) t2
+        on t2.postsId=posts.id
+        left join user u1
+        on u1.id=createrId
+        where boardId=#{boardId}
+        order by top desc,elite desc,commentTime desc
+        limit #{begin},#{step}
+    </select>
+
+    <select id="querySpeBoardPostsCount" parameterType="int" resultType="int">
+        SELECT count(id) FROM posts WHERE boardId=#{boardId}
+    </select>
+
+    <resultMap id="boardMap" type="com.smart.entity.Board">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="queryBoardList" resultMap="boardMap">
+        SELECT id,name FROM board
     </select>
 </mapper>

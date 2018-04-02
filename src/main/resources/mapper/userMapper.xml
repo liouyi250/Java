@@ -7,6 +7,7 @@
         <result property="password" column="password"/>
         <result property="roleId" column="role_id"/>
         <result property="isLock" column="isLock"/>
+
     </resultMap>
 
     <select id="queryUser" resultMap="userMap" >
@@ -21,4 +22,8 @@
     <update id="updateUser" parameterType="com.smart.entity.User">
         UPDATE user SET username=#{userName},password=md5(#{password}),role_id=#{roleId},isLock=#{isLock} WHERE id=#{id}
     </update>
+
+    <select id="queryUserById" parameterType="int" resultMap="userMap">
+        select id,username,password,role_id,isLock from user where id=#{userId}
+    </select>
 </mapper>

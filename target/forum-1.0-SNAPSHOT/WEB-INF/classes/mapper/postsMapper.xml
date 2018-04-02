@@ -4,18 +4,22 @@
     <resultMap id="postsMap" type="com.smart.entity.Posts">
         <id property="id" column="id"/>
         <result property="boardId" column="boardId"/>
-        <result property="creater" column="creater"/>
+        <result property="createrId" column="createrId"/>
         <result property="subject" column="subject"/>
         <result property="article" column="article"/>
         <result property="createTime" column="createTime"/>
+        <result property="viewCount" column="viewCount" />
+        <result property="top" column="top"/>
+        <result property="elite" column="elite"/>
+        <association property="user" column="createrId" select="com.smart.dao.UserDao.queryUserById" />
     </resultMap>
 
-    <select id="queryPostsList" resultMap="postsMap" parameterType="int" >
-        SELECT id,boardId,creater,subject,article,createTime from posts WHERE id=#{id}
+    <select id="queryPostsById" resultMap="postsMap" parameterType="int">
+        SELECT id,boardId,createrId,subject,article,createTime,viewCount,top,elite FROM posts WHERE id=#{postsId}
     </select>
 
     <insert id="addNewPosts" parameterType="com.smart.entity.Posts" keyProperty="id" useGeneratedKeys="true">
-        INSERT INTO posts(boardId,creater,subject,article,createTime) VALUES (#{boardId},#{creater},#{subject},#{article},#{createTime})
+        INSERT INTO posts(boardId,createrId,subject,article,createTime) VALUES (#{boardId},#{createrId},#{subject},#{article},#{createTime})
     </insert>
 
     <delete id="deletePosts" parameterType="int">

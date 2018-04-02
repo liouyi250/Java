@@ -17,9 +17,9 @@ public class PostsDaoTest {
     public void testAddNewPosts(){
         Posts posts=new Posts();
         posts.setBoardId(1);
-        posts.setCreater("liuyi");
-        posts.setSubject("大事件");
-        posts.setArticle("今天发生了一件大事");
+        posts.setCreaterId(1);
+        posts.setSubject("Spring深度解析");
+        posts.setArticle("Spring框架是在2002年由某人编写");
         posts.setCreateTime(LocalDateTime.now());
 
         PostsDao postsDao=(PostsDao) context.getBean("postsDao");
@@ -40,12 +40,21 @@ public class PostsDaoTest {
         Posts posts=new Posts();
         posts.setId(3);
         posts.setBoardId(1);
-        posts.setCreater("liuyi");
+        posts.setCreaterId(2);
         posts.setSubject("da事件");
         posts.setArticle("今天发生了一件大事");
         posts.setCreateTime(LocalDateTime.now());
         int r=postsDao.updatePosts(posts);
         System.out.println(r);
+    }
+
+    @Test
+    public void testQueryPostsById(){
+        PostsDao postsDao=(PostsDao) context.getBean("postsDao");
+        Posts posts=postsDao.queryPostsById(1);
+        Assert.assertNotNull(posts.getUser());
+        System.out.println(posts.getCreateTime());
+
     }
 
 

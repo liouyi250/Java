@@ -27,8 +27,9 @@
                         <div class="bar">
 <span class="y">
 <a href="http://bbs.hzbx.com/forum.php?mod=post&amp;action=newthread&amp;fid=33" onclick="switchAdvanceMode(this.href);doane(event);">高级模式</a>
-</span><script src="/img/seditor.js" type="text/javascript"></script>
-                            <div class="fpd">
+</span>
+                            <%--<div class="fpd">--%>
+                            <div>
                                 <a href="javascript:;" title="文字加粗" class="fbld">B</a>
                                 <a href="javascript:;" title="设置文字颜色" class="fclr" id="fastpostforecolor">Color</a>
                                 <a id="fastpostimg" href="javascript:;" title="图片" class="fmg">Image</a>
@@ -37,11 +38,14 @@
                                 <a id="fastpostcode" href="javascript:;" title="代码" class="fcd">Code</a>
                                 <a href="javascript:;" class="fsml" id="fastpostsml">Smilies</a>
                             </div></div>
+
                         <div class="area">
                             <div class="pt hm">
-                                您需要登录后才可以发帖 <a href="/user/login" class="xi2">登录</a> | <a href="/user/register" class="xi2">立即注册</a>
+                                <%--您需要登录后才可以发帖 <a href="/user/login" class="xi2">登录</a> | <a href="/user/register" class="xi2">立即注册</a>--%>
+                                <textarea></textarea>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <div id="seccheck_fastpost">
@@ -105,7 +109,7 @@
             &nbsp;&nbsp;<span id="tcss"></span><script type="text/javascript" src="/img/ping.js" charset="utf-8"></script><script type="text/javascript" reload="1">pgvMain({"discuzParams":{"r2":"1551267","ui":0,"rt":"forum","md":"forumdisplay","fi":"33","pn":1,"qq":"000"},"extraParams":""});</script><script type="text/javascript">
             var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
             document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F4d4bef15595e3691acea287b1c890d19' type='text/javascript'%3E%3C/script%3E"));
-        </script><script src="/img/h.js" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=4d4bef15595e3691acea287b1c890d19" target="_blank">网站统计</a><span class="pipe">|</span><a href="http://bbs.hzbx.com/forum.php?mobile=yes">手机版</a><span class="pipe">|</span><a href="http://bbs.hzbx.com/forum.php?mod=misc&amp;action=showdarkroom">小黑屋</a><span class="pipe">|</span>陕ICP备13006162号</p>
+        </script><<a href="http://tongji.baidu.com/hm-web/welcome/ico?s=4d4bef15595e3691acea287b1c890d19" target="_blank">网站统计</a><span class="pipe">|</span><a href="http://bbs.hzbx.com/forum.php?mobile=yes">手机版</a><span class="pipe">|</span><a href="http://bbs.hzbx.com/forum.php?mod=misc&amp;action=showdarkroom">小黑屋</a><span class="pipe">|</span>陕ICP备13006162号</p>
         <p class="xs0">
             GMT+8, 2018-3-17 11:07<span id="debuginfo">
 , Processed in 0.119948 second(s), 14 queries
@@ -128,7 +132,6 @@
 <script type="text/javascript">
     var tipsinfo = '1551267|X3.2|0.6||0||0|7|1521256068|79e93483f7b3204ff33f3f3a38758680|2';
 </script>
-<script src="/img/discuz_tips.js" type="text/javascript" charset="UTF-8"></script>
 
 </body></html>
 

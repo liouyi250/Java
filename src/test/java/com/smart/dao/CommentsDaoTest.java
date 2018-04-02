@@ -1,12 +1,16 @@
 package com.smart.dao;
 
 import com.smart.entity.Comments;
+import com.smart.service.CommentsService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class CommentsDaoTest {
@@ -16,8 +20,8 @@ public class CommentsDaoTest {
     public void testAddComments(){
         Comments comments=new Comments();
         comments.setPostsId(1);
-        comments.setValuator("chenfurong");
-        comments.setEvaluatee("liuyi");
+        comments.setValuatorId(1);
+        comments.setEvaluateeId(2);
         comments.setCommentTime(LocalDateTime.now());
         comments.setCommentDetail("我认为这是一个好注意");
 
@@ -42,10 +46,9 @@ public class CommentsDaoTest {
 
     @Test
     public void testQueryComments(){
-        CommentsDao commentsDao=(CommentsDao) context.getBean("commentsDao");
-        List<Comments> list=commentsDao.queryComment(1);
-
-        Assert.assertNotNull(list);
-        list.forEach(n->System.out.println(n.getCommentDetail()));
+        CommentsService service=(CommentsService) context.getBean("commentsService");
+        List<Comments> comments=service.queryCommentsByPostsId(1,1);
+        Assert.assertNotNull(comments);
+        comments.forEach(n->System.out.println(n.getCommentDetail()));
     }
 }

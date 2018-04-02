@@ -6,25 +6,27 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>java - 论坛</title>
+    <title>${requestScope.title}</title>
 
     <meta name="keywords" content="java">
     <meta name="description" content="java ,论坛">
     <meta http-equiv="MSThemeCompatible" content="Yes">
     <base href=".">
+    <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/style_1_common.css">
     <link rel="stylesheet" type="text/css" href="/css/style_1_forum_forumdisplay.css">
-    <link rel="alternate" type="application/rss+xml" title="汉中百姓论坛 - 汉中百姓论坛｜汉中阳光社区｜汉中星光社区｜汉中百姓网" href="http://bbs.hzbx.com/forum.php?mod=rss&amp;fid=33&amp;auth=0">
+    <link rel="stylesheet" type="text/css" href="/css/style_1_forum_viewthread.css">
 </head>
 
 <body id="nv_forum" class="pg_forumdisplay" onkeydown="if(event.keyCode==27) return false;">
 <div id="append_parent"></div><div id="ajaxwaitid"></div>
 <div id="toptb" class="cl">
     <div class="wp">
-        <div class="z"><script type="text/javascript">var _speedMark = new Date();</script></div>
+        <div class="z"></div>
         <div class="y">
             <a id="switchblind" href="javascript:;" onclick="toggleBlind(this)" title="开启辅助访问" class="switchblind">开启辅助访问</a>
         </div>
@@ -37,8 +39,8 @@
     </div>
     <div id="fjump_menu" class="btda"></div></div><div id="hd">
     <div class="wp">
-        <div class="hdc cl"><h2><a href="http://www.hzbx.com/" title="汉中百姓论坛"><img src="/img/logo.gif" alt="汉中百姓论坛" border="0"></a></h2><script src="/img/logging.js" type="text/javascript"></script>
-            <form method="post" autocomplete="off" id="lsform" action="http://bbs.hzbx.com/member.php?mod=logging&amp;action=login&amp;loginsubmit=yes&amp;infloat=yes&amp;lssubmit=yes">
+        <div class="hdc cl"><h2><a href="http://www.hzbx.com/" title="汉中百姓论坛"><img src="/img/logo.gif" alt="汉中百姓论坛" border="0"></a></h2>
+            <form method="post" autocomplete="off" id="lsform" action="/user/login">
                 <div class="fastlg cl">
                     <span id="return_ls" style="display:none"></span>
                     <div class="y pns">
@@ -102,52 +104,12 @@
                 </p>
             </div>
             <div class="search_right">
-                <div class="pindao_left">
-                    <ul>
-                        <li><span>生活</span></li>
-                        <li><a href="http://bbs.hzbx.com/forum-10-1.html" target="_blank">讨论</a></li>
-                        <li><a href="http://bbs.hzbx.com/forum-11-1.html" target="_blank">谝传</a></li>
-                        <li><a href="http://bbs.hzbx.com/forum-12-1.html" target="_blank">情感</a></li>
-                        <li><a href="http://bbs.hzbx.com/forum-15-1.html" target="_blank">他乡</a></li>
-                        <li><a href="http://bbs.hzbx.com/forum-20-1.html" target="_blank">房产</a></li>
-                    </ul>
-                    <ul>
-                        <li><span>娱乐</span></li>
-                        <li><a href="http://bbs.hzbx.com/forum-22-1.html" target="_blank">汉中户外</a></li>
-                        <li><a href="http://bbs.hzbx.com/forum-23-1.html" target="_blank">文学</a></li>
-                        <li><a href="http://bbs.hzbx.com/forum-13-1.html" target="_blank">网友自拍</a></li>
-                    </ul>
-                    <ul>
-                        <li><span>信息</span></li>
-                        <li><a href="http://bbs.hzbx.com/forum-30-1.html" target="_blank">交友</a></li>
-                        <li><a href="http://bbs.hzbx.com/forum-31-1.html" target="_blank">二手</a></li>
-                        <li><a href="http://bbs.hzbx.com/forum-32-1.html" target="_blank">房产</a></li>
-                        <li><a href="http://bbs.hzbx.com/forum-33-1.html" target="_blank">招聘</a></li>
-                        <li><a href="http://che.hzbx.com/" target="_blank">汽车</a></li>
-                    </ul>
-                </div>
-                <div class="pindao_right">
-                    <ul>
-                        <li><span>新闻</span></li>
-                        <li><a href="http://news.hzbx.com/ningqiang" target="_blank">宁强</a></li>
-                        <li><a href="http://news.hzbx.com/xixiang" target="_blank">西乡</a></li>
-                        <li><a href="http://news.hzbx.com/lueyang" target="_blank">略阳</a></li>
-                        <li><a href="http://news.hzbx.com/chenggu" target="_blank">城固</a></li>
-                        <li><a href="http://news.hzbx.com/nanzheng" target="_blank">南郑</a></li>
-                    </ul>
-                    <ul>
-                        <li><span>景点</span></li>
-                        <li><a href="http://tour.hzbx.com/tag/4a" target="_blank">4A景区</a></li>
-                        <li><a href="http://tour.hzbx.com/tag/3a" target="_blank">3A景区</a></li>
-                        <li><a href="http://tour.hzbx.com/tag/ziran" target="_blank">自然</a></li>
-                        <li><a href="http://tour.hzbx.com/tag/renwen" target="_blank">人文</a></li>
-                    </ul>
-                    <ul>
-                        <li><span>房产</span></li>
-                        <li><a href="http://fang.hzbx.com/house" target="_blank">汉中楼盘大全</a></li>
-                        <li><a href="http://fang.hzbx.com/all" target="_blank">汉中楼盘成交价格</a></li>
-                    </ul>
-                </div>
+                <ul>
+                <c:forEach items="${requestScope.board}" var="spe">
+                    <li><span><a href='/board/${spe.id}'>${spe.name}</a></span></li>
+                </c:forEach>
+                </ul>
+
                 <div style="clear:both"></div>
             </div>
         </div>

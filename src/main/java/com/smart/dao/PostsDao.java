@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Repository
 public interface PostsDao {
-    List<Posts> queryPostsList(int boardId);
+    Posts queryPostsById(int postsId);
     int addNewPosts(Posts posts);
     int deletePosts(int id);
     int updatePosts(Posts posts);

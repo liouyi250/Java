@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/header.jsp"/>
 <div id="wp" class="wp">
     <style id="diy_style" type="text/css"></style>
@@ -46,8 +47,26 @@
 
 
                 <div id="pgt" class="bm bw0 pgs cl">
-                    <span id="fd_page_top"><div class="pg"><strong>1</strong><a href="http://bbs.hzbx.com/forum-33-2.html">2</a><a href="http://bbs.hzbx.com/forum-33-3.html">3</a><a href="http://bbs.hzbx.com/forum-33-4.html">4</a><a href="http://bbs.hzbx.com/forum-33-5.html">5</a><a href="http://bbs.hzbx.com/forum-33-6.html">6</a><a href="http://bbs.hzbx.com/forum-33-7.html">7</a><a href="http://bbs.hzbx.com/forum-33-8.html">8</a><a href="http://bbs.hzbx.com/forum-33-9.html">9</a><a href="http://bbs.hzbx.com/forum-33-10.html">10</a><a href="http://bbs.hzbx.com/forum-33-46.html" class="last">... 46</a><label><input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="1" onkeydown="if(event.keyCode==13) {window.location=&#39;forum.php?mod=forumdisplay&amp;fid=33&amp;page=&#39;+this.value;; doane(event);}"><span title="共 46 页"> / 46 页</span></label><a href="http://bbs.hzbx.com/forum-33-2.html" class="nxt">下一页</a></div></span>
-                    <span class="pgb y"><a href="http://bbs.hzbx.com/forum.php">返&nbsp;回</a></span>
+                    <span id="fd_page_top">
+                        <input type="hidden" id="curPage" value="${requestScope.page.curPage}"/>
+                        <input type="hidden" id="totalPage" value="${requestScope.page.totalPage}"/>
+                        <div class="pg">
+
+
+
+
+
+
+
+
+                            <a href="http://bbs.hzbx.com/forum-33-46.html" class="last">... 46</a>
+                            <label><input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="1" onkeydown="if(event.keyCode==13) {window.location=&#39;forum.php?mod=forumdisplay&amp;fid=33&amp;page=&#39;+this.value;; doane(event);}">
+                                <span title="共 ${requestScope.page.totalPage} 页"> / 46 页</span>
+                            </label>
+                            <a href="javascript:nextPage(${requestScope.page.curPage},${requestScope.page.totalPage})" class="nxt">下一页</a>
+                        </div>
+                    </span>
+                    <span class="pgb y"><a href="javascript:window.location.href='/'">返&nbsp;回</a></span>
                     <a href="javascript:;" id="newspecial" onmouseover="$(&#39;newspecial&#39;).id = &#39;newspecialtmp&#39;;this.id = &#39;newspecial&#39;;showMenu({&#39;ctrlid&#39;:this.id})" onclick="showWindow(&#39;newthread&#39;, &#39;forum.php?mod=post&amp;action=newthread&amp;fid=33&#39;)" title="发新帖"><img src="/img/pn_post.png" alt="发新帖"></a></div>
                 <div id="threadlist" class="tl bm bmw">
                     <div class="th">
@@ -84,72 +103,85 @@
 
 
                                 <c:forEach items="${requestScope.list}" var="postsInfo">
-
-                                    <tbody id="stickthread_75406">
-                                    <tr>
-                                        <td class="icn">
-                                            <a href="http://bbs.hzbx.com/thread-75406-1-1.html" title="全局置顶主题 - 新窗口打开" target="_blank">
-                                                <img src="/img/pin_3.gif" alt="全局置顶">
-                                            </a>
-                                        </td>
-                                        <th class="common">
-                                            <a href="javascript:;" id="content_75406" class="showcontent y" title="更多操作" onclick="CONTENT_TID=&#39;75406&#39;;CONTENT_ID=&#39;stickthread_75406&#39;;showMenu({&#39;ctrlid&#39;:this.id,&#39;menuid&#39;:&#39;content_menu&#39;})"></a>
-                                            <a href="javascript:void(0);" class="showhide y" title="隐藏置顶帖">隐藏置顶帖</a>
-                                            <a class="tdpre y" href="javascript:void(0);">预览</a>
-                                            <a href="http://bbs.hzbx.com/thread-75406-1-1.html" style="color: #EE1B2E;" class="s xst">${postsInfo.subject}</a>
-                                            <img src="/img/digest_3.gif" align="absmiddle" alt="digest" title="精华 3">
-                                            <span class="tps">&nbsp;...<a href="http://bbs.hzbx.com/thread-75406-2-1.html">2</a><a href="http://bbs.hzbx.com/thread-75406-3-1.html">3</a></span>
-                                        </th>
-                                        <td class="by">
-                                            <cite>
-                                                <a href="http://bbs.hzbx.com/space-uid-55610.html" c="1" style="color: #CC0033;" mid="card_364">${postsInfo.creater}</a></cite>
-                                            <em><span>${postsInfo.createTime}</span></em>
-                                        </td>
-                                        <td class="num"><a href="http://bbs.hzbx.com/thread-75406-1-1.html" class="xi2">22</a><em>898043</em></td>
-                                        <td class="by">
-                                            <cite><a href="http://bbs.hzbx.com/space-username-%E6%B2%89%E9%BB%98%E5%91%90%E5%96%8A.html" c="1" mid="card_3666">${postsInfo.evaluatee}</a></cite>
-                                            <em><a href="http://bbs.hzbx.com/forum.php?mod=redirect&amp;tid=75406&amp;goto=lastpost#lastpost">${postsInfo.commentTime}</a></em>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-
-
+                                    <c:if test="${postsInfo.top==true}">
+                                        <tbody id="stickthread_75406">
+                                        <tr>
+                                            <td class="icn">
+                                                <a href="http://bbs.hzbx.com/thread-75406-1-1.html" title="全局置顶主题 - 新窗口打开" target="_blank">
+                                                    <img src="/img/pin_3.gif" alt="全局置顶">
+                                                </a>
+                                            </td>
+                                            <th class="common">
+                                                <a href="javascript:;" id="content_75406" class="showcontent y" title="更多操作" onclick="CONTENT_TID=&#39;75406&#39;;CONTENT_ID=&#39;stickthread_75406&#39;;showMenu({&#39;ctrlid&#39;:this.id,&#39;menuid&#39;:&#39;content_menu&#39;})"></a>
+                                                <a href="javascript:void(0);" class="showhide y" title="隐藏置顶帖">隐藏置顶帖</a>
+                                                <a class="tdpre y" href="javascript:void(0);">预览</a>
+                                                <a href="/posts/${postsInfo.id}" style="color: #EE1B2E;" class="s xst">${postsInfo.subject}</a>
+                                                <img src="/img/digest_3.gif" align="absmiddle" alt="digest" title="精华 3">
+                                                <span class="tps">&nbsp;...<a href="http://bbs.hzbx.com/thread-75406-2-1.html">2</a><a href="http://bbs.hzbx.com/thread-75406-3-1.html">3</a></span>
+                                            </th>
+                                            <td class="by">
+                                                <cite>
+                                                    <a href="http://bbs.hzbx.com/space-uid-55610.html" c="1" style="color: #CC0033;" mid="card_364">${postsInfo.creater}</a></cite>
+                                                <em><span><fmt:formatDate value="${postsInfo.createTime}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate> </span></em>
+                                            </td>
+                                            <td class="num"><a href="http://bbs.hzbx.com/thread-75406-1-1.html" class="xi2">${postsInfo.comCount}</a><em>${postsInfo.viewCount}</em></td>
+                                            <td class="by">
+                                                <cite><a href="http://bbs.hzbx.com/space-username-%E6%B2%89%E9%BB%98%E5%91%90%E5%96%8A.html" c="1" mid="card_3666">${postsInfo.evaluatee}</a></cite>
+                                                <em><a href="http://bbs.hzbx.com/forum.php?mod=redirect&amp;tid=75406&amp;goto=lastpost#lastpost">${postsInfo.commentTime}</a></em>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </c:if>
                                 </c:forEach>
 
 
 
 
-                                <tbody id="separatorline">
-                                <tr class="ts">
-                                    <td>&nbsp;</td>
-                                    <th><a href="javascript:;" onclick="checkForumnew_btn(&#39;33&#39;)" title="查看更新" class="forumrefresh">版块主题</a></th><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                                <tbody id="separatorline" class="emptb">
+                                <tr>
+                                    <td class="icn"></td>
+                                    <th></th>
+                                    <td class="by"></td>
+                                    <td class="num"></td>
+                                    <td class="by"></td>
                                 </tr>
                                 </tbody>
                                 <script type="text/javascript">hideStickThread();</script>
-                                <tbody id="normalthread_255569">
-                                <tr>
-                                    <td class="icn">
-                                        <a href="http://bbs.hzbx.com/thread-255569-1-1.html" title="有新回复 - 新窗口打开" target="_blank">
-                                            <img src="/img/folder_new.gif">
-                                        </a>
-                                    </td>
-                                    <th class="new">
-                                        <a href="javascript:;" id="content_255569" class="showcontent y" title="更多操作" onclick="CONTENT_TID=&#39;255569&#39;;CONTENT_ID=&#39;normalthread_255569&#39;;showMenu({&#39;ctrlid&#39;:this.id,&#39;menuid&#39;:&#39;content_menu&#39;})"></a>
-                                        <a class="tdpre y" href="javascript:void(0);" onclick="previewThread(&#39;255569&#39;, &#39;normalthread_255569&#39;);">预览</a>
-                                        <a href="http://bbs.hzbx.com/thread-255569-1-1.html" onclick="atarget(this)" class="s xst">汉中妙洁家政招商加盟</a>
-                                    </th>
-                                    <td class="by">
-                                        <cite>
-                                            <a href="http://bbs.hzbx.com/space-uid-67178.html" c="1" style="color: #0066FF;" mid="card_2975">感恩有你</a></cite>
-                                        <em><span>2017-12-30</span></em>
-                                    </td>
-                                    <td class="num"><a href="http://bbs.hzbx.com/thread-255569-1-1.html" class="xi2">0</a><em>5930</em></td>
-                                    <td class="by">
-                                        <cite><a href="http://bbs.hzbx.com/space-username-%E6%84%9F%E6%81%A9%E6%9C%89%E4%BD%A0.html" c="1" mid="card_2764">感恩有你</a></cite>
-                                        <em><a href="http://bbs.hzbx.com/forum.php?mod=redirect&amp;tid=255569&amp;goto=lastpost#lastpost">2017-12-30 15:13</a></em>
-                                    </td>
-                                </tr>
-                                </tbody>
+
+
+                                <c:forEach items="${requestScope.list}" var="postsInfo">
+                                <c:if test="${postsInfo.top==false}">
+                                    <tbody id="normalthread_255569">
+                                    <tr>
+                                        <td class="icn">
+                                            <a href="http://bbs.hzbx.com/thread-255569-1-1.html" title="有新回复 - 新窗口打开" target="_blank">
+                                                <img src="/img/folder_new.gif">
+                                            </a>
+                                        </td>
+                                        <th class="common">
+                                            <a href="javascript:;" id="content_255569" class="showcontent y" title="更多操作" onclick="CONTENT_TID=&#39;255569&#39;;CONTENT_ID=&#39;normalthread_255569&#39;;showMenu({&#39;ctrlid&#39;:this.id,&#39;menuid&#39;:&#39;content_menu&#39;})"></a>
+                                            <a class="tdpre y" href="javascript:void(0);" onclick="previewThread(&#39;255569&#39;, &#39;normalthread_255569&#39;);">预览</a>
+                                            <a href="/posts/${postsInfo.postsId}"  class="s xst">${postsInfo.subject}</a>
+                                        </th>
+                                        <td class="by">
+                                            <cite>
+                                                <a href="http://bbs.hzbx.com/space-uid-67178.html" c="1" style="color: #0066FF;" mid="card_2975">${postsInfo.creater}</a></cite>
+                                            <em><span><fmt:formatDate value="${postsInfo.createTime}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate> </span></em>
+                                        </td>
+                                        <td class="num"><a href="http://bbs.hzbx.com/thread-255569-1-1.html" class="xi2">${postsInfo.comCount}</a><em>${postsInfo.viewCount}</em></td>
+                                        <td class="by">
+                                            <cite><a href="http://bbs.hzbx.com/space-username-%E6%84%9F%E6%81%A9%E6%9C%89%E4%BD%A0.html" c="1" mid="card_2764">${postsInfo.evaluatee}</a></cite>
+                                            <em><a href="http://bbs.hzbx.com/forum.php?mod=redirect&amp;tid=255569&amp;goto=lastpost#lastpost">${commentTime}</a></em>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </c:if>
+                                </c:forEach>
+
+
+
+
+
                             </table><!-- end of table "forum_G[fid]" branch 1/3 -->
                         </form>
                     </div>
@@ -192,11 +224,17 @@
                         <li><a href="http://bbs.hzbx.com/forum.php?mod=forumdisplay&amp;fid=33&amp;filter=heat&amp;orderby=heats">热门</a></li>
                     </ul>
                 </div>
-                <a class="bm_h" href="javascript:;" rel="forum.php?mod=forumdisplay&amp;fid=33&amp;page=2" curpage="1" id="autopbn" totalpage="46" picstyle="0" forumdefstyle="">下一页 »</a>
-                <script src="/img/autoloadpage.js" type="text/javascript"></script>
+                <a class="bm_h" href="javascript:nextPage(${requestScope.page.curPage},${requestScope.page.totalPage});"  id="autopbn" totalpage="46" picstyle="0" forumdefstyle="">下一页 »</a>
+
                 <div class="bm bw0 pgs cl">
-                    <span id="fd_page_bottom"><div class="pg"><strong>1</strong><a href="http://bbs.hzbx.com/forum-33-2.html">2</a><a href="http://bbs.hzbx.com/forum-33-3.html">3</a><a href="http://bbs.hzbx.com/forum-33-4.html">4</a><a href="http://bbs.hzbx.com/forum-33-5.html">5</a><a href="http://bbs.hzbx.com/forum-33-6.html">6</a><a href="http://bbs.hzbx.com/forum-33-7.html">7</a><a href="http://bbs.hzbx.com/forum-33-8.html">8</a><a href="http://bbs.hzbx.com/forum-33-9.html">9</a><a href="http://bbs.hzbx.com/forum-33-10.html">10</a><a href="http://bbs.hzbx.com/forum-33-46.html" class="last">... 46</a><label><input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="1" onkeydown="if(event.keyCode==13) {window.location=&#39;forum.php?mod=forumdisplay&amp;fid=33&amp;page=&#39;+this.value;; doane(event);}"><span title="共 46 页"> / 46 页</span></label><a href="http://bbs.hzbx.com/forum-33-2.html" class="nxt">下一页</a></div></span>
-                    <span class="pgb y"><a href="http://bbs.hzbx.com/">返&nbsp;回</a></span>
+                    <span id="fd_page_bottom">
+
+                        <div class="pg">
+                            <script type="text/javascript" src="/js/loadpage.js"></script>
+                        </div>
+
+                    </span>
+                    <span class="pgb y"><a href="javascript:window.location.href='/'">返&nbsp;回</a></span>
                     <a href="javascript:;" id="newspecialtmp" onmouseover="$(&#39;newspecial&#39;).id = &#39;newspecialtmp&#39;;this.id = &#39;newspecial&#39;;showMenu({&#39;ctrlid&#39;:this.id})" onclick="showWindow(&#39;newthread&#39;, &#39;forum.php?mod=post&amp;action=newthread&amp;fid=33&#39;)" title="发新帖"><img src="/img/pn_post.png" alt="发新帖"></a></div>
                 <!--[diy=diyfastposttop]--><div id="diyfastposttop" class="area"></div><!--[/diy]-->
                 <script type="text/javascript">

@@ -17,6 +17,8 @@ public class User {
     private int roleId;
     private boolean isLock;
 
+
+
     public int getId() {
         return id;
     }
@@ -56,6 +58,8 @@ public class User {
     public void setLock(boolean lock) {
         isLock = lock;
     }
+
+
 
     @Override
     public String toString() {

@@ -1,14 +1,20 @@
 package com.smart.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDateTime;
 
 public class Comments {
     private int id;
     private int postsId;
-    private String valuator;//评论者
-    private String evaluatee;//被评论者
+    private int valuatorId;//评论者
+    private int evaluateeId;//被评论者
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime commentTime;
     private String commentDetail;
+    private User user;
+
 
     public int getId() {
         return id;
@@ -26,20 +32,20 @@ public class Comments {
         this.postsId = postsId;
     }
 
-    public String getValuator() {
-        return valuator;
+    public int getValuatorId() {
+        return valuatorId;
     }
 
-    public void setValuator(String valuator) {
-        this.valuator = valuator;
+    public void setValuatorId(int valuatorId) {
+        this.valuatorId = valuatorId;
     }
 
-    public String getEvaluatee() {
-        return evaluatee;
+    public int getEvaluateeId() {
+        return evaluateeId;
     }
 
-    public void setEvaluatee(String evaluatee) {
-        this.evaluatee = evaluatee;
+    public void setEvaluateeId(int evaluateeId) {
+        this.evaluateeId = evaluateeId;
     }
 
     public LocalDateTime getCommentTime() {
@@ -56,5 +62,13 @@ public class Comments {
 
     public void setCommentDetail(String commentDetail) {
         this.commentDetail = commentDetail;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

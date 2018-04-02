@@ -42,4 +42,6 @@ public class UserDaoTest {
         Assert.assertNotNull(queryUser);
         System.out.println(queryUser);
     }
+
+
 }

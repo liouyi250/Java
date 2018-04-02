@@ -4,18 +4,19 @@
     <resultMap id="commentsMap" type="com.smart.entity.Comments">
         <id property="id" column="id"/>
         <result property="postsId" column="postsId"/>
-        <result property="valuator" column="valuator"/>
-        <result property="evaluatee" column="evaluatee"/>
+        <result property="valuatorId" column="valuatorId"/>
+        <result property="evaluateeId" column="evaluateeId"/>
         <result property="commentTime" column="commentTime"/>
         <result property="commentDetail" column="commentDetail"/>
+        <association property="user" column="valuatorId" select="com.smart.dao.UserDao.queryUserById"/>
     </resultMap>
 
     <select id="queryComment" resultMap="commentsMap" >
-        SELECT id,postsId,valuator,evaluatee,commentTime,commentDetail from comments WHERE id=#{id}
+        SELECT id,postsId,valuatorId,evaluateeId,commentTime,commentDetail from comments WHERE postsId=#{postsId} limit #{start},#{step}
     </select>
 
     <insert id="addComment" parameterType="com.smart.entity.Comments" keyProperty="id" useGeneratedKeys="true">
-        INSERT INTO comments(postsId,valuator,evaluatee,commentTime,commentDetail) values(#{postsId},#{valuator},#{evaluatee},#{commentTime},#{commentDetail})
+        INSERT INTO comments(postsId,valuatorId,evaluateeId,commentTime,commentDetail) values(#{postsId},#{valuator},#{evaluatee},#{commentTime},#{commentDetail})
 
     </insert>
 
@@ -26,4 +27,8 @@
     <delete id="deleteComment" parameterType="int">
         DELETE FROM comments where id=#{id}
     </delete>
+
+    <select id="queryCommentsCountViaPostsId" parameterType="int" resultType="int">
+        select count(id) from comments where postsId=#{postsId}
+    </select>
 </mapper>
